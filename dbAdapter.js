@@ -23,6 +23,10 @@ class DbAdapter {
     return this.db.get(docId);
   }
 
+  getAll() {
+    return this.db.list({ include_docs: true });
+  }
+
   update(updatedDoc) {
     return this.db.insert(updatedDoc);
   }
