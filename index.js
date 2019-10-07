@@ -7,7 +7,7 @@ const JwtStrategy = require('passport-jwt').Strategy;
 const { ExtractJwt } = require('passport-jwt');
 
 const app = express();
-const port = process.env.SERVER_PORT;
+const port = process.env.PORT;
 
 passport.use(new JwtStrategy({
   jwtFromRequest: ExtractJwt.fromExtractors([
