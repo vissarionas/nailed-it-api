@@ -1,18 +1,36 @@
+require('dotenv').config();
+
 const Cloudant = require('@cloudant/cloudant');
 
 const account = process.env.DB_ACCOUNT;
 const password = process.env.DB_PASSWORD;
 const cloudant = Cloudant({ account, password });
 
-const customersDB = cloudant.use('customers');
+class DbAdapter {
+  constructor(dbName) {
+    this.db = cloudant.use(dbName);
+  }
 
-const insert = async (customerDoc) => customersDB.insert(customerDoc);
-const get = async (customerID) => customersDB.get(customerID);
-const update = async (updatedCustomerDoc) => customersDB.insert(updatedCustomerDoc);
-const destroy = async (customerID, docRevision) => customersDB.destroy(customerID, docRevision);
+  insert(doc) {
+    return this.db.insert(doc);
+  }
 
-get('customer_1').then((data) => {
-  console.log(data);
-}).catch((err) => {
-  console.log(err);
-});
+  bulkInsert(docs) {
+    return this.db.bulk({ docs });
+  }
+
+  get(docId) {
+    return this.db.get(docId);
+  }
+
+  update(updatedDoc) {
+    return this.db.insert(updatedDoc);
+  }
+
+  destroy(docId, docRev) {
+    return this.db.destroy(docId, docRev);
+  }
+}
+
+
+module.exports = DbAdapter;

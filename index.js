@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 require('dotenv').config();
-require('./dbAdapter');
 
 const express = require('express');
 const passport = require('passport');
