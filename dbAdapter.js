@@ -15,6 +15,10 @@ class DbAdapter {
     return this.db.insert(doc);
   }
 
+  update(updatedDoc) {
+    return this.db.insert(updatedDoc);
+  }
+
   bulkInsert(docs) {
     return this.db.bulk({ docs });
   }
@@ -25,10 +29,6 @@ class DbAdapter {
 
   getAll() {
     return this.db.list({ include_docs: true });
-  }
-
-  update(updatedDoc) {
-    return this.db.insert(updatedDoc);
   }
 
   destroy(docId, docRev) {

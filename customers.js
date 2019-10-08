@@ -11,6 +11,14 @@ class Customers {
     return customersDb.getAll();
   }
 
+  static saveCustomer(customerDoc) {
+    return customersDb.insert(customerDoc);
+  }
+
+  static updateCustomer(updatedCustomerDoc) {
+    return customersDb.update(updatedCustomerDoc);
+  }
+
   static deleteCustomer(customerID, revision) {
     return customersDb.destroy(customerID, revision);
   }
