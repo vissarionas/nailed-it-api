@@ -1,4 +1,4 @@
 applications:
-- name: nailed-it
+- name: nailed-it-api
   random-route: true
   memory: 256M
